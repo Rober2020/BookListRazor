@@ -1,0 +1,8 @@
+Newtonsoft.Json
+
+microsoft.aspnetcore.razor.runtimecompilation
+services.AddRazorPages().AddRazorRuntimeCompilation(); en el startup
+
+microsoft.entityframeworkcore
+microsoft.entityframeworkcore.sqlserver
+microsoft.entityframeworkcore.tools
