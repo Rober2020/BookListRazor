@@ -6,11 +6,15 @@
 
 <br />
 <div class="container row p-0 m-0">
-    <div class="col-10">
+    <div class="col-6">
         <h2 class="text-info">Book List</h2>
     </div>
     <div class="col-2">
-        <a class="btn btn-info form-control text-white">Create new book</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">Create new book</a>
+    </div>
+
+    <div class="col-2">
+        <a asp-page="Upsert" class="btn btn-info form-control text-white">Add(Upsert) new book</a>
     </div>
 
     <div class="col-12 border p-3 mt-3">
@@ -27,6 +31,10 @@
                             <label asp-for="Books.FirstOrDefault().Author"></label>
                         </th>
                         <th>
+                            @*@Html.DisplayNameFor(m=>m.Books.FirstOrDefault().Author)*@
+                            <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                        </th>
+                        <th>
 
                         </th>
                     </tr>
@@ -40,8 +48,11 @@
                                 @Html.DisplayFor(m => item.Author)
                             </td>
                             <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <a class="btn btn-success btn-sm text-white">Edit</a>
+                                @Html.DisplayFor(m => item.ISBN)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
                             </td>
                         </tr>
                     }
@@ -53,5 +64,28 @@
             }
         </form>
     </div>
+
+    <div class="col-12" style="text-align:center">
+        <br />
+        <span class="h3 text-info">OR</span>
+        <br />
+        <br />
+    </div>
+    <div class="col-12 border p-3">
+        <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+@section Scripts{
+<script src="~/js/bookList.js"></script>
+ }
 
